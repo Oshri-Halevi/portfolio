@@ -94,47 +94,56 @@
     #skills    { background: #f4f8fd; }
     #contact   { background: #f3faf6; }
     .section-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2rem; }
-    .section-title { font-size: 22px; font-weight: 600; }
+    .section-title { font-size: 28px; font-weight: 700; }
     .section-count {
       font-size: 12px; color: var(--text-secondary);
       background: var(--bg-secondary);
       padding: 2px 8px; border-radius: 20px;
     }
 
-    .projects-list { display: flex; flex-direction: column; gap: 16px; }
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
     .project-card {
-      display: grid; grid-template-columns: 120px 1fr;
-      gap: 0 1.25rem;
       background: var(--bg-primary);
       border: 0.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      transition: border-color 0.15s;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
-    .project-card:hover { border-color: var(--border-md); }
-    .project-num-col { display: flex; flex-direction: column; }
-    .project-num-badge {
-      width: 100%; flex: 1;
-      border-radius: var(--radius-md);
-      border: 0.5px solid var(--border);
-      overflow: hidden; min-height: 100px;
+    .project-card:hover { border-color: var(--border-md); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .project-img {
+      width: 100%; height: 180px; overflow: hidden;
     }
-    .project-num-badge img {
+    .project-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .project-line { display: none; }
-    .project-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-    .project-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+    .project-body {
+      padding: 1.25rem; flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .project-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .project-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; flex: 1; }
+    .project-tech-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
+    .project-footer {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 0.75rem;
+      border-top: 0.5px solid var(--border);
+    }
     .project-github {
       display: inline-flex; align-items: center; gap: 5px;
-      font-size: 12px; color: var(--text-secondary); text-decoration: none;
+      font-size: 13px; font-weight: 500; color: var(--text-primary);
+      text-decoration: none; padding: 5px 0;
       transition: color 0.15s;
     }
-    .project-github:hover { color: var(--text-primary); }
-    .project-github svg { width: 13px; height: 13px; }
+    .project-github:hover { color: var(--accent); }
+    .project-github svg { width: 14px; height: 14px; }
     .tag {
-      font-size: 12px; padding: 3px 9px; border-radius: 20px;
+      font-size: 16px; padding: 8px 16px; border-radius: 20px;
       border: 0.5px solid var(--border); color: var(--text-secondary);
     }
     .tag.primary {
@@ -142,9 +151,19 @@
       border-color: var(--accent-border);
     }
 
+    .edu-card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+    .edu-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .edu-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 14px; }
+    .edu-label { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+
     .skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-item {
-      font-size: 14px; padding: 6px 14px;
+      font-size: 16px; padding: 8px 16px;
       border: 0.5px solid var(--border); border-radius: 20px;
       color: var(--text-primary);
     }
@@ -225,11 +244,11 @@
   <div class="section-header">
     <span class="section-title">Education & Skills</span>
   </div>
-  <div class="project-card" style="display:block; margin-bottom:1.5rem;">
-    <div class="project-title" style="font-size:18px;">B.Sc. Computer Science</div>
-    <div class="project-desc" style="margin-top:6px; font-size:15px;">HIT — Holon Institute of Technology &nbsp;·&nbsp; 2024 – 2026 (expected)</div>
-    <div class="project-desc" style="margin-top:10px; font-size:14px;">Relevant courses:</div>
-    <div class="project-tags" style="margin-top:6px;">
+  <div class="edu-card">
+    <div class="edu-title">B.Sc. Computer Science</div>
+    <div class="edu-sub">HIT — Holon Institute of Technology &nbsp;·&nbsp; 2024 – 2026 (expected)</div>
+    <div class="edu-label">Relevant courses:</div>
+    <div class="project-tags" style="margin-top:8px;">
       <span class="tag">Data Structures</span>
       <span class="tag">Algorithms</span>
       <span class="tag">Operating Systems</span>
@@ -242,7 +261,9 @@
       <span class="tag">Cybersecurity</span>
     </div>
   </div>
-  <div class="skills-list">
+  <div class="edu-card" style="margin-top:1rem;">
+    <div class="edu-title">Skills</div>
+    <div class="skills-list">
     <span class="skill-item highlight">Python</span>
     <span class="skill-item highlight">Java</span>
     <span class="skill-item highlight">Kotlin</span>
@@ -251,10 +272,10 @@
     <span class="skill-item">SQL</span>
     <span class="skill-item">Linux</span>
     <span class="skill-item">Arduino</span>
-
     <span class="skill-item">Android Dev</span>
     <span class="skill-item">Embedded Systems</span>
     <span class="skill-item">3D Modeling</span>
+  </div>
   </div>
 </div>
 
@@ -265,13 +286,11 @@
   <div class="projects-list">
 
     <div class="project-card">
-      <div class="project-num-col">
-        <div class="project-num-badge"><img src="sharemap-preview.png" alt="ShareMap" /></div>
-        <div class="project-line"></div>
-      </div>
+      <div class="project-img"><img src="sharemap-preview.png" alt="ShareMap" /></div>
       <div class="project-body">
         <div class="project-title">ShareMap</div>
         <div class="project-desc">Full-stack web app for real-time location sharing.<br>JWT authentication, group management, invite-code joining, and an interactive map powered by Leaflet with PostgreSQL storage.</div>
+        <div class="project-tech-label">Technologies Used:</div>
         <div class="project-tags">
           <span class="tag primary">Java</span>
           <span class="tag primary">Spring Boot</span>
@@ -280,21 +299,21 @@
           <span class="tag">JWT</span>
           <span class="tag">HTML/CSS/JS</span>
         </div>
-        <a class="project-github" href="https://github.com/Oshri-Halevi/ShareMap" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          View on GitHub
-        </a>
+        <div class="project-footer">
+          <a class="project-github" href="https://github.com/Oshri-Halevi/ShareMap" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </div>
 
     <div class="project-card">
-      <div class="project-num-col">
-        <div class="project-num-badge"><img src="taskmanager-preview.png" alt="Task Manager" /></div>
-        <div class="project-line"></div>
-      </div>
+      <div class="project-img"><img src="taskmanager-preview.png" alt="Task Manager" /></div>
       <div class="project-body">
         <div class="project-title">Task Manager App</div>
         <div class="project-desc">Android task management app built with Kotlin, MVVM architecture, Room database for local storage, and lifecycle-aware state management via ViewModel.</div>
+        <div class="project-tech-label">Technologies Used:</div>
         <div class="project-tags">
           <span class="tag primary">Kotlin</span>
           <span class="tag primary">Android</span>
@@ -302,42 +321,42 @@
           <span class="tag">Room DB</span>
           <span class="tag">ViewModel</span>
         </div>
-        <a class="project-github" href="https://github.com/Oshri-Halevi/Task_Manager_App" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          View on GitHub
-        </a>
+        <div class="project-footer">
+          <a class="project-github" href="https://github.com/Oshri-Halevi/Task_Manager_App" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </div>
 
     <div class="project-card">
-      <div class="project-num-col">
-        <div class="project-num-badge"><img src="smartparking-preview.png" alt="Smart Parking" /></div>
-        <div class="project-line"></div>
-      </div>
+      <div class="project-img"><img src="smartparking-preview.png" alt="Smart Parking" /></div>
       <div class="project-body">
         <div class="project-title">Smart Parking System</div>
         <div class="project-desc">IoT parking lot simulation with MQTT-based sensor communication, central data manager, and a real-time control GUI for monitoring and data storage.</div>
+        <div class="project-tech-label">Technologies Used:</div>
         <div class="project-tags">
           <span class="tag primary">Python</span>
           <span class="tag">IoT</span>
           <span class="tag">MQTT</span>
           <span class="tag">GUI</span>
         </div>
-        <a class="project-github" href="https://github.com/Oshri-Halevi/Smart_Parking_IoT_Project" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          View on GitHub
-        </a>
+        <div class="project-footer">
+          <a class="project-github" href="https://github.com/Oshri-Halevi/Smart_Parking_IoT_Project" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </div>
 
     <div class="project-card">
-      <div class="project-num-col">
-        <div class="project-num-badge" style="aspect-ratio: 16/9; flex: unset;"><img src="roboticarm-preview.png" alt="Robotic Arm" style="object-fit: cover;" /></div>
-        <div class="project-line"></div>
-      </div>
+      <div class="project-img"><img src="roboticarm-preview.png" alt="Robotic Arm" /></div>
       <div class="project-body">
         <div class="project-title">Intelligent Robotic Arm</div>
         <div class="project-desc">An academic project developed at the Holon Institute of Technology (HIT) as part of the Robotics &amp; Software Engineering course.<br>The project demonstrates how low-cost hardware and AI-based vision can be integrated to create an autonomous robotic arm capable of sorting objects by color.</div>
+        <div class="project-tech-label">Technologies Used:</div>
         <div class="project-tags">
           <span class="tag primary">Python</span>
           <span class="tag primary">OpenCV</span>
@@ -346,10 +365,12 @@
           <span class="tag">3D Modeling</span>
           <span class="tag">GUI</span>
         </div>
-        <a class="project-github" href="https://github.com/Oshri-Halevi/Intellegnt-robotic-arm" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          View on GitHub
-        </a>
+        <div class="project-footer">
+          <a class="project-github" href="https://github.com/Oshri-Halevi/Intellegnt-robotic-arm" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </div>
 
